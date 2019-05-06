@@ -1,7 +1,35 @@
-<div class="row h-100">
-    <div class="col">
-        element
-        <button class="btn btn-outline-dark" (click)="goTo('/secure/principal')">Principal</button>
-    </div>
+<section class="figura-control text-center">
+    <div class="container text-center">
+        <div class="row" *ngFor="let figura of (figura$| async)">
+            <div class="figura-detalle col-5 d-flex align-items-center flex-column" [ngClass]="{'col-12': isFormula===false && isImagen===false}">
+                <div class="row ">
+                    <h1>{{figura.nombre}}</h1>
+                </div>
+                <div class="row">
+                    <p>{{figura.descripcion}}</p>
+                </div>
+                <div class="row">
+                    <!-- <button class="btn btn-outline-dark" (click)="goTo('/secure/principal')">Principal</button> -->
+                    <button class="btn btn-outline-dark" (click)="mostrarFormulas()">Formulas</button>
+                    <button class="btn btn-outline-dark" (click)="mostrarImagenes()">Imagenes</button>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="figura-media col-5 bg-primary" *ngIf="isFormula">
+                <div *ngFor="let formul of figura.formulas">
+                    <p>{{formul.titulo}}</p>
+                    <p>{{formul.formula}}</p>
+                </div>
+                <button class="btn btn-outline-dark" (click)="ocultarDetalle()">Ocultar</button>
+            </div>
+            <div class="col-5 bg-primary figura__imagenes" *ngIf="isImagen">
+                <ng-container *ngFor="let imagen of figura.imagenes; let i=index">
+                    <p class="figura__titulo">Imagen {{i}}</p>
+                    <img src="{{imagen}}" alt="" class="figura__imagen">
+                </ng-container>
 
-</div>
+
+            </div>
+        </div>
+    </div>
+</section>

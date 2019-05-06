@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-// import { AngularFirestore } from '@angular/fire/firestore';
-// import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class DataService {
    
   constructor(
-    // private angularFirestore: AngularFirestore
+     private angularFirestore: AngularFirestore
     ) {
   }
 
@@ -20,16 +20,17 @@ export class DataService {
   //   return  this.angularFirestore.collection<Usuario>('users', ref => ref.where('email', '==', email)).valueChanges();
  
   // }
-  // getAllElementos(): Observable<Elemento[]> {
-  //   return this.angularFirestore.collection<Elemento>('shapes').valueChanges();
-  // }
+  getAllElementos(): Observable<Elemento[]> {
+    
+    return this.angularFirestore.collection<Elemento>('shapes').valueChanges();
+  }
   // getFormulasToElemento() {
   //   return this.angularFirestore.doc<Elemento>('shapes')
   //     .collection<Formula>('formulas').valueChanges();
   // }
-  // getElementosByName(term: string): Observable<Elemento[]> { 
-  //     return  this.angularFirestore.collection<Elemento>('shapes', ref => ref.where('nombre', '==', term)).valueChanges();
-  // }
+  getElementosByName(term: string): Observable<Elemento[]> { 
+      return  this.angularFirestore.collection<Elemento>('shapes', ref => ref.where('nombre', '==', term)).valueChanges();
+  }
   // deleteElemento(elemento: Elemento) { 
   //   this.angularFirestore.collection<Elemento>('shapes').doc(elemento.id).delete();
   // }

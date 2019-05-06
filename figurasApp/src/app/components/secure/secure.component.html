@@ -1,14 +1,71 @@
-<div class="container-fluid d-flex h-100 flex-column">
-    <div class="row h-100">
-        <div class="col-4 bg-primary">
-            secure
+<div class="container-fluid h-100">
+    <!-- <div class="container-header">
+        <h4>Welcome to Application</h4>
+        <h6>Usuario????</h6>
 
-            <button class="btn btn-outline-dark" (click)="goTo('/secure/element/triangle')">Triangle</button>
-            <button class="btn btn-outline-dark" (click)="goTo('/secure/element/square')">Square</button>
-            <button class="btn btn-outline-dark" (click)="goTo('/about-us')">About Us</button>
+
+        <nav class="nav flex-column pt-3 height-75 text-center" *ngIf="elementos$">
+            <a class="nav-link text-white" [routerLink]="['/secure','element',item.nombre]" routerLinkActive="text-bold" *ngFor="let item of (elementos$| async)">{{item.nombre}}</a>
+        </nav>
+        <nav class="nav flex-column height-75" *ngIf="!elementos$">
+            <span class="nav-link text-white"> <i class="fa fa-info-circle" aria-hidden="true"> </i> No hay items</span>
+        </nav>
+
+        <button class="btn btn-outline-dark acerca-de" (click)="goTo('/about-us')">About Us</button>
+    </div> -->
+
+
+    <!--  <div class="container-fluid d-flex h-100 flex-column mainContent">
+        <div class="row h-100 ">
+            <div class="col-2 bg-primary">
+                secure
+                 <button class="btn btn-outline-dark" (click)="goTo('/secure/element/triangle')">Triangle</button>
+                <button class="btn btn-outline-dark" (click)="goTo('/secure/element/square')">Square</button> -->
+    <!-- <ng-container *ngIf="elementos$">
+                    <a class="nav-link text-white" [routerLink]="['/secure','element',item.nombre]" routerLinkActive="text-bold" *ngFor="let item of (elementos$| async)">{{item.nombre}}</a>
+                </ng-container>
+                <button class="btn btn-outline-dark" (click)="goTo('/about-us')">About Us</button>
+            </div>
+            <div class="col-10  bg-secondary">
+                <router-outlet></router-outlet>
+            </div>
         </div>
-        <div class="col-8  bg-secondary">
-            <router-outlet></router-outlet>
+    </div> -->
+    <!-- <div class="container-menu bg-primary justify-content-center text-center text-white">
+        <div class="subContainer-menu">
+            <h1 class="menu-header">
+                Welcome to Application
+            </h1>
+            <h4 class="menu-usuario text-bold">
+                Usuario????
+            </h4>
+            <div class="menu-figuras" *ngIf="elementos$">
+                <a class="nav-link text-white" [routerLink]="['/secure','element',item.nombre]" routerLinkActive="text-bold" *ngFor="let item of (elementos$| async)">{{item.nombre}}</a>
+            </div>
+            <button class="bnt btn-outline-dark menu-acerca" (click)="goTo('/about-us')">About Us</button>
+        </div>
+
+    </div>
+    <div class="container-figura bg-secondary">
+        <router-outlet></router-outlet>
+    </div> -->
+    <div class="row h-100">
+        <div class="col-md-4 col-sm-12 bg-primary text-white text-center  h-100">
+            <h1 class="menu-header display-7">
+                Welcome to Application
+            </h1>
+            <h4 class="menu-usuario text-bold">
+                Usuario????
+            </h4>
+            <div class="menu-figuras" *ngIf="elementos$">
+                <a class="nav-link text-white" *ngFor="let item of (elementos$| async)" (click)="goTo('/secure/element/'+item.nombre)" routerLinkActive="text-bold">{{item.nombre}}</a>
+            </div>
+            <button class="bnt btn-outline-dark menu-acerca" (click)="goTo('/about-us')">About Us</button>
+        </div>
+        <div class="container-figuras col col-md-8 col-sm-12 ">
+            <div class="container-figura">
+                <router-outlet></router-outlet>
+            </div>
         </div>
     </div>
 </div>
