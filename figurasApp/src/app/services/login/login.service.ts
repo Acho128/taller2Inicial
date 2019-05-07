@@ -56,13 +56,13 @@ export class LoginService {
   //   });
   // }
 
-  // getTitulo(): Observable<string> {
-  //   return this.titulo$;
-  // }
+  getTitulo(): Observable<string> {
+    return this.titulo$;
+  }
 
-  // setTitulo(titulo: string) {
-  //   this.titulo$.next(titulo);
-  // }
+  setTitulo(titulo: string) {
+    this.titulo$.next(titulo);
+  }
 
   // getUsuario(): Usuario {
   //   return this.currentUser;

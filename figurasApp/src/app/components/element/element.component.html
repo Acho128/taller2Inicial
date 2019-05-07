@@ -1,35 +1,75 @@
-<section class="figura-control text-center">
-    <div class="container text-center">
-        <div class="row" *ngFor="let figura of (figura$| async)">
-            <div class="figura-detalle col-5 d-flex align-items-center flex-column" [ngClass]="{'col-12': isFormula===false && isImagen===false}">
-                <div class="row ">
-                    <h1>{{figura.nombre}}</h1>
-                </div>
-                <div class="row">
-                    <p>{{figura.descripcion}}</p>
-                </div>
-                <div class="row">
-                    <!-- <button class="btn btn-outline-dark" (click)="goTo('/secure/principal')">Principal</button> -->
-                    <button class="btn btn-outline-dark" (click)="mostrarFormulas()">Formulas</button>
-                    <button class="btn btn-outline-dark" (click)="mostrarImagenes()">Imagenes</button>
-                </div>
+<!-- <div class="text-center">
+    <div class="row" *ngFor="let figura of (figura$| async)">
+        <div class="figura-detalle col-5 d-flex align-items-center flex-column" [ngClass]="{'col-12': isFormula===false && isImagen===false}">
+            <div class="row ">
+                <h1>{{figura.nombre}}</h1>
             </div>
-            <div class="col-1"></div>
-            <div class="figura-media col-5 bg-primary" *ngIf="isFormula">
-                <div *ngFor="let formul of figura.formulas">
-                    <p>{{formul.titulo}}</p>
-                    <p>{{formul.formula}}</p>
-                </div>
-                <button class="btn btn-outline-dark" (click)="ocultarDetalle()">Ocultar</button>
+            <div class="row">
+                <p>{{figura.descripcion}}</p>
             </div>
-            <div class="col-5 bg-primary figura__imagenes" *ngIf="isImagen">
-                <ng-container *ngFor="let imagen of figura.imagenes; let i=index">
-                    <p class="figura__titulo">Imagen {{i}}</p>
-                    <img src="{{imagen}}" alt="" class="figura__imagen">
-                </ng-container>
+            <div class="row">
+                <button class="btn btn-outline-dark" (click)="mostrarFormulas()">Formulas</button>
+                <button class="btn btn-outline-dark" (click)="mostrarImagenes()">Imagenes</button>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="figura-media col-5 bg-primary" *ngIf="isFormula">
+            <div *ngFor="let formul of figura.formulas">
+                <p>{{formul.titulo}}</p>
+                <p>{{formul.formula}}</p>
+            </div>
+            <button class="btn btn-outline-dark" (click)="ocultarDetalle()">Ocultar</button>
+        </div>
+        <div class="col-5 bg-primary figura__imagenes" *ngIf="isImagen">
+            <ng-container *ngFor="let imagen of figura.imagenes; let i=index">
+                <p class="figura__titulo">Imagen {{i}}</p>
+                <img src="{{imagen}}" alt="" class="figura__imagen">
+            </ng-container>
+        </div>
+    </div>
+</div> -->
 
-
+<div class="row figuras__contenido h-100" *ngFor="let figura of (figura$| async)">
+    <!--  <div class="figura__detalle" [ngClass]="{'col-5':isFormula, 'col-5':isImagen, 'col-12':!isFormula, 'col-12':!isImagen}"> -->
+    <div class="figura__detalle col-5">
+        <div class="row text-center">
+            <div class="col-12 figura__titulo ">
+                <h1>{{figura.nombre}}</h1>
+            </div>
+            <div class="col-12 figura__descripcion">
+                <p>{{figura.descripcion}}</p>
+            </div>
+            <div class="col-12 figura__imgformula">
+                <button class="btn btn-outline-dark figura__boton" (click)="mostrarFormulas()">Formulas</button>
+                <button class="btn btn-outline-dark figura__boton" (click)="mostrarImagenes()">Imagenes</button>
             </div>
         </div>
     </div>
-</section>
+    <div class="col-6 figura__media text-center" *ngIf="isFormula ">
+        <h3>Formulas</h3>
+        <div class="row" *ngFor="let formula of figura.formulas ">
+            <div class="col-12">
+                <h4>{{formula.titulo}}</h4>
+            </div>
+            <div class="col-12">
+                <p>{{formula.titulo==='perimetro'?'P: ':'A: '}}{{formula.formula}}</p>
+            </div>
+        </div>
+        <button class="btn btn-outline-dark " (click)="ocultarDetalle() ">Ocultar</button>
+    </div>
+    <div class="col-6 figura__media text-center" *ngIf="isImagen ">
+        <div class="row ">
+            <div class="col-12 figura__imagen" *ngFor="let imagen of figura.imagenes|slice:0:3; let i=index ">
+                <div class="row">
+                    <p class="figura__titulo col-4 text-center align-self-center">Imagen {{i}}</p>
+                    <img class="col-8" src="{{imagen}} " alt="">
+                </div>
+            </div>
+            <!--   <ng-container *ngFor="let imagen of figura.imagenes; let i=index ">
+                <p class="figura__titulo ">Imagen {{i}}</p>
+                <img src="{{imagen}} " alt=" " class="figura__imagen">
+            </ng-container> -->
+        </div>
+        <button class="btn btn-outline-dark " (click)="ocultarDetalle() ">Ocultar</button>
+    </div>
+</div>

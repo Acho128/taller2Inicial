@@ -1,3 +1,15 @@
-.container-figuras {
-    border: 5px dotted rgba(0, 0, 0, 0.2);
+.contenedor__menu {
+    position: relative;
+}
+
+.menu__listaOpciones a:hover {
+    background-color: black;
+    color: white;
+}
+
+.menu__opciones {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
 }

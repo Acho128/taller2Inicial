@@ -1,4 +1,26 @@
-.figura-detalle,
-.figura-media {
+.figura__media,
+.figura__detalle {
     border: 2px dashed gray;
+}
+
+.figura__media {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.figura__detalle {
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+}
+
+.figura__boton {
+    margin-right: 30px;
+}
+
+img {
+    height: 138px;
+    object-fit: scale-down;
 }
