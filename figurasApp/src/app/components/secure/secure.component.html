@@ -2,11 +2,13 @@
     <div class="row h-100">
         <div class="col-md-4 col-sm-12 bg-primary text-white text-center contenedor__menu">
             <h1 class="menu__titulo display-7">Welcome to Application</h1>
-            <h4 class="menu__usuario">Usuario????</h4>
+            <h4 class="menu__usuario" *ngIf="usuario">{{usuario.nombre}}</h4>
             <div class="menu__listaOpciones" *ngIf="elementos$">
                 <a class="nav-link text-white" *ngFor="let item of (elementos$| async)" (click)="goTo('/secure/element/'+item.nombre)" routerLinkActive="text-bold">{{item.nombre}}</a>
             </div>
             <div class="menu__opciones">
+                <button class="bnt btn-outline-dark btn-primary menu-acerca" (click)="goTo('/account/login')">Log In</button>
+                <button class="bnt btn-outline-dark btn-primary menu-acerca" (click)="goTo('/about-us')">Log Out</button>
                 <button class="bnt btn-outline-dark btn-primary menu-acerca" (click)="goTo('/about-us')">About Us</button>
             </div>
         </div>

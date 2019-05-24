@@ -12,40 +12,41 @@ export class DataService {
     ) {
   }
 
-  // saveUsuario(user: Usuario) { 
-  //   this.angularFirestore.collection<Usuario>('users').add(user)
+  saveUsuario(user: Usuario) { 
+    this.angularFirestore.collection<Usuario>('users').add(user)
      
-  // }
-  // getUsuarioByEmail(email: string): Observable<Usuario[]> {
-  //   return  this.angularFirestore.collection<Usuario>('users', ref => ref.where('email', '==', email)).valueChanges();
+  }
+  getUsuarioByEmail(email: string): Observable<Usuario[]> {
+    return  this.angularFirestore.collection<Usuario>('users', ref => ref.where('email', '==', email)).valueChanges();
  
-  // }
+  }
   getAllElementos(): Observable<Elemento[]> {
     
     return this.angularFirestore.collection<Elemento>('shapes').valueChanges();
   }
-  // getFormulasToElemento() {
-  //   return this.angularFirestore.doc<Elemento>('shapes')
-  //     .collection<Formula>('formulas').valueChanges();
-  // }
+  getFormulasToElemento() {
+    return this.angularFirestore.doc<Elemento>('shapes')
+      .collection<Formula>('formulas').valueChanges();
+  }
   getElementosByName(term: string): Observable<Elemento[]> { 
       return  this.angularFirestore.collection<Elemento>('shapes', ref => ref.where('nombre', '==', term)).valueChanges();
   }
-  // deleteElemento(elemento: Elemento) { 
-  //   this.angularFirestore.collection<Elemento>('shapes').doc(elemento.id).delete();
-  // }
+  deleteElemento(elemento: Elemento) { 
+    this.angularFirestore.collection<Elemento>('shapes').doc(elemento.id).delete();
+  }
 
 
-  // saveElemento(elemento: Elemento) {
-  //   if (elemento.id) {
-  //     this.angularFirestore.collection<Elemento>('shapes').add(elemento)
+  saveElemento(elemento: Elemento):string {
+    if (elemento.id && elemento.id!='') {
+      this.angularFirestore.collection<Elemento>('shapes').doc(elemento.id).set(elemento);
 
-  //   } else {
-  //     elemento.id = this.angularFirestore.createId();
+    } else {
+      elemento.id = this.angularFirestore.createId();
       
-  //     this.angularFirestore.collection<Elemento>('shapes').doc(elemento.id).set(elemento);
-  //   }  
-  // }
+      this.angularFirestore.collection<Elemento>('shapes').add(elemento);
+    }  
+    return elemento.id;
+  }
 
 }
 

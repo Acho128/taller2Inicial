@@ -1,2 +1,16 @@
-account
-<router-outlet></router-outlet>
+<div class="container-fluid h-100">
+    <div class="row h-100">
+        <div class="col col-md-5 col-sm-12 contenedor__figuras ">
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col text-white text-center contenedor__menu bg-account order-last">
+            <h1 class="menu__titulo display-7">Welcome to Application</h1>
+            <!--  <h4 class="menu__usuario">Please Login</h4> -->
+            <h2 class="">{{titulo}}</h2>
+            <div class="menu__opciones">
+                <button class="bnt btn-outline-dark btn-primary menu-acerca" (click)="goTo('/account/login')">Log In</button>
+                <button class="bnt btn-outline-dark btn-primary menu-acerca" (click)="goTo('/about-us')">About Us</button>
+            </div>
+        </div>
+    </div>
+</div>

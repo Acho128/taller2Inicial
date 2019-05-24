@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { AboutUsComponent } from './components/about-us/about-us.component'; 
+import { AboutUsComponent } from './components/about-us/about-us.component';
 import { SecureComponent } from './components/secure/secure.component';
 import { PrincipalComponent } from './components/principal/principal.component';
 import { ElementComponent } from './components/element/element.component';
@@ -19,33 +19,41 @@ import { RecoveryComponent } from './components/recovery/recovery.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
-
+//import { environment as common } from '../environments/environment.prod';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { ElementAdminComponentComponent } from './components/element-admin-component/element-admin-component.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AboutUsComponent, 
+    AboutUsComponent,
     SecureComponent,
     PrincipalComponent,
-    ElementComponent, 
+    ElementComponent,
     AccountComponent,
     LoginComponent,
     RegisterComponent,
-    RecoveryComponent
+    RecoveryComponent,
+    ElementAdminComponentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
-    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ReactiveFormsModule,
+    SnotifyModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [DataService, LoginService, AuthenticationGuard, AuthorizationGuard],
+  providers: [
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService, DataService, LoginService, AuthenticationGuard, AuthorizationGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

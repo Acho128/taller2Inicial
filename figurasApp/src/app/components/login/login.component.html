@@ -1,14 +1,27 @@
-<div class="container-fluid h-100">
-    <div class="row h-100">
-        <div class="col col-md-6 col-sm-12 contenedor__figuras ">
-            <router-outlet></router-outlet>
+<div class="container-fluid">
+    <div class="row text-center frmFormGroup">
+        <div class="col-12">
+            <h3>Welcome, {{titulo}}!</h3>
         </div>
-        <div class="col-md-6 col-sm-12 bg-primary text-white text-center contenedor__menu">
-            <h1 class="menu__titulo display-7">Welcome to Application</h1>
-            <h4 class="menu__usuario">Please Login</h4>
-            <div class="menu__opciones">
-                <button class="bnt btn-outline-dark btn-primary menu-acerca" (click)="goTo('/about-us')">About Us</button>
-            </div>
+        <div class="col-12">
+            <form [formGroup]="formGroup" id="formGroup" class="row">
+                <div class="form-group col-12">
+                    <label for="email">Login</label>
+                    <input class="form-control" formControlName="email" id="email" type="email" placeholder="Correo">
+                </div>
+                <div class="form-group col-12">
+                    <label for="password">Contraseña</label>
+                    <input class="form-control" formControlName="password" id="password" type="password" placeholder="Contraseña">
+                </div>
+                <button type="submit" class="btn btn-primary" [ngClass]="{'disabled': !formGroup.valid}" (click)="login('crismonge390@gmail.com','123456')">Login</button>
+                <button class="bnt btn-outline-dark btn-primary" (click)="goTo('/account/recovery')">Recuperar Contraseña</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button class="bnt btn-outline-dark btn-primary" (click)="goTo('/account/register')">Crear Cuenta</button>
         </div>
     </div>
 </div>

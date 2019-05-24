@@ -1,0 +1,8 @@
+.frmFormGroup {
+    border: 2px solid blue;
+    width: 63%;
+    margin-top: 2rem;
+    margin-left: 5rem;
+    /* padding-bottom: 5px; */
+    padding: 27px;
+}

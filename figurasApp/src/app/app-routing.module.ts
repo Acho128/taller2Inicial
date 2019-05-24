@@ -8,6 +8,8 @@ import { AccountComponent } from './components/account/account.component';
 import { LoginComponent } from './components/login/login.component';
 import { RecoveryComponent } from './components/recovery/recovery.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthorizationGuard } from './guards/authorization/authorization.guard';
+import { ElementAdminComponentComponent } from './components/element-admin-component/element-admin-component.component';
 
 const routes: Routes = [
 
@@ -25,6 +27,11 @@ const routes: Routes = [
       {
         path: 'element/:elementName', component: ElementComponent
       },
+      {
+        path: 'element/:elementName/edit', component: ElementAdminComponentComponent,
+        canActivate: [AuthorizationGuard], data: { role: 'Math' }
+      },
+
     ]
   },
   { path: '**', pathMatch: 'full', redirectTo: 'secure/principal' }
